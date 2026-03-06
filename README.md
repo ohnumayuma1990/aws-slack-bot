@@ -3,20 +3,22 @@
 このプロジェクトは、Slackで特定のリアクション（スタンプ）が押された際に、自動でユーザーにDM（ダイレクトメッセージ）を送信するAWS Lambdaベースのボットです。AWSの無料枠内で構築可能です。
 
 ## 機能
-- `white_check_mark` (✅) スタンプが押されたことを検知
-- スタンプを押したユーザーに対して、自動で正解通知のDMを送信
+- **クイズの出題**: ボットへのメンションを検知してクイズをチャンネルに投稿します。
+- **正解の管理**: 出題したクイズの正解を DynamoDB で管理します。
+- **自動答え合わせ**: 出題されたクイズに正しいリアクションが押されたことを検知し、ユーザーにDMを送信します。
 
 ## 構成
 - **AWS Lambda**: Pythonによるメインロジックの実装
 - **Amazon API Gateway**: SlackからのWebHookを受け取るエンドポイント
-- **Slack API (Events API)**: リアクションイベントの通知
+- **Amazon DynamoDB**: クイズの正解データ管理
+- **Slack API (Events API)**: メンションおよびリアクションイベントの通知
 
 ## セットアップ手順
 
 ### 1. Slackアプリの設定
 詳細な手順は [slack_setup.md](slack_setup.md) を参照してください。
-- 必要な権限: `reactions:read`, `chat:write`, `users:read`
-- イベント購読: `reaction_added`
+- 必要な権限: `reactions:read`, `chat:write`, `users:read`, `app_mentions:read`
+- イベント購読: `reaction_added`, `app_mention`
 
 ### 2. AWS環境の構築
 詳細な手順は [aws_setup.md](aws_setup.md) を参照してください。

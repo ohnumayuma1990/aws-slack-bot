@@ -8,8 +8,9 @@
    - 左サイドバーの「OAuth & Permissions」を選択します。
    - 「Scopes」セクションの「Bot Token Scopes」に以下の権限を追加します：
      - `reactions:read` (スタンプの検知)
-     - `chat:write` (DMの送信)
+     - `chat:write` (メッセージ/DMの送信)
      - `users:read` (ユーザー情報の確認)
+     - `app_mentions:read` (メンションの検知)
 
 3. **アプリのインストール**
    - 同じページのトップにある「Install to Workspace」をクリックして、ワークスペースにアプリをインストールします。
@@ -22,5 +23,7 @@
 5. **イベント購読（Event Subscriptions）の設定**
    - 左サイドバーの「Event Subscriptions」を選択し、「Enable Events」をオンにします。
    - 「Request URL」に後ほど作成する API Gateway のエンドポイントURLを入力します。
-   - 「Subscribe to bot events」で `reaction_added` を追加します。
+   - 「Subscribe to bot events」で以下を追加します：
+     - `reaction_added`
+     - `app_mention`
    - 「Save Changes」をクリックします。
